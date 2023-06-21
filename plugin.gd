@@ -36,5 +36,37 @@ func _export_tb_config(path: String) -> void:
 	config.name = ProjectSettings["application/config/name"]
 	config.icon = "icon.png"
 	
+	config.fileformats = [
+		{
+			format = "Standard"
+		}
+	]
+	
+	config.filesystem = {
+		searchpath = "",
+		packageformat = {
+			extension = "zip",
+			format = "zip"
+		}
+	}
+	
+	config.textures = {
+		package = {
+			type = "directory",
+			root = ""
+		},
+		format = {
+			format = "image",
+			extensions = [
+				"png"
+			]
+		}
+	}
+	
+	config.entities = {
+		definitions = [],
+		defaultcolor = "1.0 1.0 1.0 1.0"
+	}
+	
 	file.store_string(JSON.stringify(config, "    "))
 	(load(ProjectSettings["application/config/icon"]) as Texture2D).get_image().save_png(path.get_base_dir() + "/icon.png")
