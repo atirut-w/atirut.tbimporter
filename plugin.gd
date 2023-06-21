@@ -7,12 +7,19 @@ var dialog: EditorFileDialog
 
 
 func _enter_tree():
-	add_tool_menu_item(TOOL_MENU_NAME, _export_tb_config)
-	
 	dialog = EditorFileDialog.new()
 	dialog.access = EditorFileDialog.ACCESS_FILESYSTEM
 	dialog.file_mode = EditorFileDialog.FILE_MODE_OPEN_DIR
-	dialog.dir_selected.connect(_write_tb_config)
+	
+	dialog.dir_selected.connect(func(path: String):
+		_file_dialog_cleanup()
+		_export_tb_config(path)
+	)
+	dialog.canceled.connect(_file_dialog_cleanup)
+	
+	add_tool_menu_item(TOOL_MENU_NAME, func():
+		get_editor_interface().popup_dialog_centered(dialog, Vector2i(800, 600))
+	)
 
 
 func _exit_tree():
@@ -20,9 +27,9 @@ func _exit_tree():
 	dialog.queue_free()
 
 
-func _export_tb_config() -> void:
-	get_editor_interface().popup_dialog_centered(dialog, Vector2i(800, 600))
-
-
-func _write_tb_config(dir: String) -> void:
+func _file_dialog_cleanup() -> void:
 	dialog.get_parent().remove_child(dialog)
+
+
+func _export_tb_config(path: String) -> void:
+	print("Export config")
