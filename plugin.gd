@@ -27,4 +27,14 @@ func _exit_tree():
 
 
 func _export_tb_config(path: String) -> void:
-	print("Export config")
+	var file := FileAccess.open(path, FileAccess.WRITE)
+	var dir := DirAccess.open(path.get_base_dir())
+	
+	var config := {}
+	
+	config.version = 6
+	config.name = ProjectSettings["application/config/name"]
+	config.icon = "icon.png"
+	
+	file.store_string(JSON.stringify(config, "    "))
+	(load(ProjectSettings["application/config/icon"]) as Texture2D).get_image().save_png(path.get_base_dir() + "/icon.png")
