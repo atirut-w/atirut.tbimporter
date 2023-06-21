@@ -9,9 +9,10 @@ var dialog: EditorFileDialog
 func _enter_tree():
 	dialog = EditorFileDialog.new()
 	dialog.access = EditorFileDialog.ACCESS_FILESYSTEM
-	dialog.file_mode = EditorFileDialog.FILE_MODE_OPEN_DIR
+	dialog.file_mode = EditorFileDialog.FILE_MODE_SAVE_FILE
+	dialog.add_filter("*.cfg", "TrenchBroom game config")
 	
-	dialog.dir_selected.connect(func(path: String):
+	dialog.file_selected.connect(func(path: String):
 		_file_dialog_cleanup()
 		_export_tb_config(path)
 	)
@@ -19,6 +20,7 @@ func _enter_tree():
 	
 	add_tool_menu_item(TOOL_MENU_NAME, func():
 		get_editor_interface().popup_dialog_centered(dialog, Vector2i(800, 600))
+		dialog.current_file = "GameConfig.cfg"
 	)
 
 
