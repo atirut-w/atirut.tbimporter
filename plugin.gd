@@ -17,6 +17,7 @@ func _enter_tree():
 
 func _exit_tree():
 	remove_tool_menu_item(TOOL_MENU_NAME)
+	dialog.queue_free()
 
 
 func _export_tb_config() -> void:
