@@ -50,4 +50,5 @@ static func export(path: String) -> void:
 
 static func _save_icon(path: String) -> void:
 	var image := (load(ProjectSettings["application/config/icon"]) as Texture2D).get_image()
+	image.resize(32, 32)
 	image.save_png(path)
