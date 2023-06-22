@@ -32,6 +32,9 @@ static func export(path: String) -> void:
 		format = {
 			format = "image",
 			extensions = [
+				"jpg",
+				"jpeg",
+				"tga",
 				"png"
 			]
 		},
