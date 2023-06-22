@@ -34,7 +34,8 @@ static func export(path: String) -> void:
 			extensions = [
 				"png"
 			]
-		}
+		},
+		attribute = "textures"
 	}
 	
 	config.entities = {
