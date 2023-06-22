@@ -17,7 +17,7 @@ static func export(path: String) -> void:
 	]
 	
 	config.filesystem = {
-		searchpath = "",
+		searchpath = ".",
 		packageformat = {
 			extension = "zip",
 			format = "zip"
@@ -27,7 +27,7 @@ static func export(path: String) -> void:
 	config.textures = {
 		package = {
 			type = "directory",
-			root = ""
+			root = "."
 		},
 		format = {
 			format = "image",
