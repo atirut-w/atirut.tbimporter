@@ -3,9 +3,7 @@ extends RefCounted
 
 
 static func export(path: String) -> void:
-	var file := FileAccess.open(path, FileAccess.WRITE)
 	var base_dir := path.get_base_dir()
-	
 	var config := {}
 	
 	config.version = 6
@@ -44,6 +42,7 @@ static func export(path: String) -> void:
 		defaultcolor = "1.0 1.0 1.0 1.0"
 	}
 	
+	var file := FileAccess.open(path, FileAccess.WRITE)
 	file.store_string(JSON.stringify(config, "    "))
 	_save_icon(base_dir + "/icon.png")
 
