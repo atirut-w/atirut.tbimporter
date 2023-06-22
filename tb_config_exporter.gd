@@ -27,7 +27,7 @@ static func export(path: String) -> void:
 	config.textures = {
 		package = {
 			type = "directory",
-			root = "."
+			root = "textures"
 		},
 		format = {
 			format = "image",
