@@ -38,13 +38,14 @@ static func export(path: String) -> void:
 	}
 	
 	config.entities = {
-		definitions = [],
+		definitions = ["entities.fgd"],
 		defaultcolor = "1.0 1.0 1.0 1.0"
 	}
 	
 	var file := FileAccess.open(path, FileAccess.WRITE)
 	file.store_string(JSON.stringify(config, "    "))
 	_save_icon(base_dir + "/icon.png")
+	FileAccess.open(base_dir + "/entities.fgd", FileAccess.WRITE)
 
 
 static func _save_icon(path: String) -> void:
