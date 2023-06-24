@@ -2,52 +2,18 @@ class_name TBConfigExporter
 extends RefCounted
 
 
+const PLUGIN_PATH := "res://addons/atirut.tbimporter"
+
+
 static func export(path: String) -> void:
 	var base_dir := path.get_base_dir()
-	var config := {}
 	
-	config.version = 6
-	config.name = ProjectSettings["application/config/name"]
-	config.icon = "icon.png"
+	var config := FileAccess.get_file_as_string(PLUGIN_PATH + "/templates/config.json")
+	var config_file := FileAccess.open(base_dir + "/GameConfig.cfg", FileAccess.WRITE)
+	config_file.store_string(config.format({
+		name = ProjectSettings["application/config/name"]
+	}))
 	
-	config.fileformats = [
-		{
-			format = "Standard"
-		}
-	]
-	
-	config.filesystem = {
-		searchpath = ".",
-		packageformat = {
-			extension = "zip",
-			format = "zip"
-		}
-	}
-	
-	config.textures = {
-		package = {
-			type = "directory",
-			root = "textures"
-		},
-		format = {
-			format = "image",
-			extensions = [
-				"jpg",
-				"jpeg",
-				"tga",
-				"png"
-			]
-		},
-		attribute = "textures"
-	}
-	
-	config.entities = {
-		definitions = ["entities.fgd"],
-		defaultcolor = "1.0 1.0 1.0 1.0"
-	}
-	
-	var file := FileAccess.open(path, FileAccess.WRITE)
-	file.store_string(JSON.stringify(config, "    "))
 	_save_icon(base_dir + "/icon.png")
 	FileAccess.open(base_dir + "/entities.fgd", FileAccess.WRITE)
 
