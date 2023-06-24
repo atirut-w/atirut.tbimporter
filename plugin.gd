@@ -7,6 +7,15 @@ var dialog: EditorFileDialog
 
 
 func _enter_tree():
+	setup_tool_item()
+
+
+func _exit_tree():
+	remove_tool_menu_item(TOOL_MENU_NAME)
+	dialog.queue_free()
+
+
+func setup_tool_item() -> void:
 	dialog = EditorFileDialog.new()
 	dialog.access = EditorFileDialog.ACCESS_FILESYSTEM
 	dialog.file_mode = EditorFileDialog.FILE_MODE_SAVE_FILE
@@ -19,8 +28,3 @@ func _enter_tree():
 		dialog.popup_centered(Vector2i(800, 600))
 		dialog.current_file = "GameConfig.cfg"
 	)
-
-
-func _exit_tree():
-	remove_tool_menu_item(TOOL_MENU_NAME)
-	dialog.queue_free()
