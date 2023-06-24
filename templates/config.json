@@ -1,0 +1,39 @@
+{
+    "version": 6,
+    "name": "{name}",
+    "icon": "icon.png",
+    "fileformats": [
+        {
+            "format": "Standard"
+        }
+    ],
+    "filesystem": {
+        "searchpath": ".",
+        "packageformat": {
+            "extension": "zip",
+            "format": "zip"
+        }
+    },
+    "textures": {
+        "package": {
+            "type": "directory",
+            "root": "textures"
+        },
+        "format": {
+            "extensions": [
+                "jpg",
+                "jpeg",
+                "tga",
+                "png"
+            ],
+            "format": "image"
+        },
+        "attribute": "textures"
+    },
+    "entities": {
+        "defaultcolor": "1.0 1.0 1.0 1.0",
+        "definitions": [
+            "entities.fgd"
+        ]
+    }
+}
