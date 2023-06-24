@@ -8,9 +8,9 @@ const PLUGIN_PATH := "res://addons/atirut.tbimporter"
 static func export(path: String) -> void:
 	var base_dir := path.get_base_dir()
 	
-	var config := FileAccess.get_file_as_string(PLUGIN_PATH + "/templates/config.json")
+	var template := FileAccess.get_file_as_string(PLUGIN_PATH + "/templates/config.json")
 	var config_file := FileAccess.open(base_dir + "/GameConfig.cfg", FileAccess.WRITE)
-	config_file.store_string(config.format({
+	config_file.store_string(template.format({
 		name = ProjectSettings["application/config/name"]
 	}))
 	
