@@ -32,3 +32,8 @@ static func tokenize(str: String) -> Array[String]:
 				buffer += char
 	
 	return tokens
+
+
+## Base class for AST nodes
+class ASTNode extends RefCounted:
+	pass
