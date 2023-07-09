@@ -46,7 +46,8 @@ func _import(source_file: String, save_path: String, options: Dictionary, platfo
 	var root := Node3D.new()
 	# TODO: import map
 
-	print(TBParser.tokenize(FileAccess.get_file_as_string(source_file)))
+	for token in TBParser.tokenize(FileAccess.get_file_as_string(source_file)):
+		print("`%s` at %d:%d" % [token.value, token.position.y, token.position.x])
 
 	var scene := PackedScene.new()
 	var error := scene.pack(root)
