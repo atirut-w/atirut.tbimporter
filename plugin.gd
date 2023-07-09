@@ -4,15 +4,22 @@ extends EditorPlugin
 
 const TOOL_MENU_NAME := "Export TrechBroom game config"
 var dialog: EditorFileDialog
+var importer: TBMapImporter
 
 
 func _enter_tree():
 	setup_tool_item()
+	
+	importer = TBMapImporter.new()
+	add_import_plugin(importer)
 
 
 func _exit_tree():
 	remove_tool_menu_item(TOOL_MENU_NAME)
 	dialog.queue_free()
+	
+	remove_import_plugin(importer)
+	importer = null
 
 
 func setup_tool_item() -> void:
