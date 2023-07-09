@@ -34,6 +34,12 @@ static func tokenize(str: String) -> Array[String]:
 	return tokens
 
 
+## A token
+class Token extends RefCounted:
+	var position: Vector2i
+	var value: String
+
+
 ## Base class for AST nodes
 class ASTNode extends RefCounted:
 	pass
