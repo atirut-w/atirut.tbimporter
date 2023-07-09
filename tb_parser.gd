@@ -1,6 +1,7 @@
 class_name TBParser
 extends RefCounted
 ## TrenchBroom map parser
+## @tutorial(TrenchBroom's View of Maps): https://trenchbroom.github.io/manual/latest/#trenchbrooms-view-of-maps
 
 
 ## Tokenizes a map file
