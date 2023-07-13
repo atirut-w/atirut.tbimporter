@@ -43,11 +43,13 @@ func _get_import_options(path: String, preset_index: int) -> Array:
 
 
 func _import(source_file: String, save_path: String, options: Dictionary, platform_variants: Array[String], gen_files: Array) -> Error:
-	var root := Node3D.new()
-	# TODO: import map
+	var tokenizer := TBTokenizer.new()
+	tokenizer.tokenize(FileAccess.get_file_as_string(source_file))
 
-	for token in TBParser.tokenize(FileAccess.get_file_as_string(source_file)):
+	for token in tokenizer.tokens:
 		print("`%s` at %d:%d" % [token.value, token.position.y, token.position.x])
+	
+	var root := Node3D.new()
 
 	var scene := PackedScene.new()
 	var error := scene.pack(root)

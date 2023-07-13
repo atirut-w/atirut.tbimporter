@@ -4,6 +4,18 @@ extends RefCounted
 ## @tutorial(TrenchBroom's View of Maps): https://trenchbroom.github.io/manual/latest/#trenchbrooms-view-of-maps
 
 
+var map: Map
+
+
+## Parses a map file
+func parse(str: String) -> Map:
+	var tokens := tokenize(str)
+	var map := Map.new()
+
+	assert(map._parse(tokens) == OK, "Failed to parse map")
+	return map
+
+
 ## Tokenizes a map file
 static func tokenize(str: String) -> Array[Token]:
 	var position := Vector2i(1, 1)
@@ -69,6 +81,14 @@ class Token extends RefCounted:
 		self.value = value
 
 
-## Base class for AST nodes
-class ASTNode extends RefCounted:
-	pass
+class Map extends RefCounted:
+	var entities: Array[Entity]
+
+
+class Entity extends RefCounted:
+	var properties: Array[Property]
+
+
+class Property extends RefCounted:
+	var name: String
+	var value: String
